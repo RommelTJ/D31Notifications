@@ -11,10 +11,14 @@
 #define LONG_RUNNING_OP_COMPLETE @"LongRunningOpComplete"
 
 @interface ViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *myLongRunningOpsInProgressCount;
-@property (weak, nonatomic) IBOutlet UILabel *myLongRunningOpsCompleteCount;
+@property (weak, nonatomic) IBOutlet UILabel *myLongRunningOpsInProgressCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *myLongRunningOpsCompleteCountLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *myDebugModeSwitch;
 @property (weak, nonatomic) IBOutlet UITextView *myTextView;
+
+@property NSMutableString *ms;
+@property int myLongRunningOps;
+@property int myLongRunningOpsComplete;
 
 @end
 
@@ -30,8 +34,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.ms = [[NSMutableString alloc] init];
+    [self.ms appendString:@"Notifications Demo\n"];
+    
     self.myDebugModeSwitch.on = NO;
-    self.myTextView.text = @"";
+    self.myTextView.text = self.ms;
     self.myTextView.editable = NO;
     
     //Receive notification when app is going into the background.
@@ -50,7 +57,9 @@
 }
 
 - (void)doEnterBackground:(NSNotification *)notification {
-    //TODO
+    [self.ms appendString:notification.name];
+    [self.ms appendString:@"\n"];
+    self.myTextView.text = self.ms;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -80,8 +80,8 @@
                     </view>
                     <connections>
                         <outlet property="myDebugModeSwitch" destination="7v0-YQ-kAA" id="M2u-dW-EXm"/>
-                        <outlet property="myLongRunningOpsCompleteCount" destination="ZtQ-w3-tV0" id="ABw-Qg-2Cq"/>
-                        <outlet property="myLongRunningOpsInProgressCount" destination="Ib7-gJ-r2t" id="Yfw-qs-U7A"/>
+                        <outlet property="myLongRunningOpsCompleteCountLabel" destination="ZtQ-w3-tV0" id="cSw-Wi-1lC"/>
+                        <outlet property="myLongRunningOpsInProgressCountLabel" destination="Ib7-gJ-r2t" id="J4e-Mx-sDl"/>
                         <outlet property="myTextView" destination="Ltw-BS-FAi" id="ee9-N2-gXy"/>
                     </connections>
                 </viewController>

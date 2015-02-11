@@ -16,11 +16,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SoY-tB-IlU">
+                                <rect key="frame" x="16" y="87" width="205" height="21"/>
+                                <color key="backgroundColor" red="0.1169877307011844" green="1" blue="0.07446776315345216" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kfq-xJ-vfG">
+                                <rect key="frame" x="16" y="58" width="205" height="21"/>
+                                <color key="backgroundColor" red="0.9989192683" green="1" blue="0.045983177649999998" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZNW-Sn-um2">
                                 <rect key="frame" x="16" y="20" width="205" height="30"/>
                                 <state key="normal" title="Start Long Running Operation">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="doStartLongRunningButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6uG-Tn-Nif"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ops in Progress:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xUn-8b-sic">
                                 <rect key="frame" x="16" y="58" width="128" height="21"/>
@@ -48,6 +59,9 @@
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7v0-YQ-kAA">
                                 <rect key="frame" x="16" y="133" width="51" height="31"/>
+                                <connections>
+                                    <action selector="doDebugSwitch:" destination="BYZ-38-t0r" eventType="valueChanged" id="wmV-gG-HTJ"/>
+                                </connections>
                             </switch>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ltw-BS-FAi">
                                 <rect key="frame" x="16" y="172" width="568" height="408"/>
@@ -64,6 +78,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="myDebugModeSwitch" destination="7v0-YQ-kAA" id="M2u-dW-EXm"/>
+                        <outlet property="myLongRunningOpsCompleteCount" destination="ZtQ-w3-tV0" id="ABw-Qg-2Cq"/>
+                        <outlet property="myLongRunningOpsInProgressCount" destination="Ib7-gJ-r2t" id="Yfw-qs-U7A"/>
+                        <outlet property="myTextView" destination="Ltw-BS-FAi" id="ee9-N2-gXy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

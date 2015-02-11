@@ -9,10 +9,21 @@
 #import "ViewController.h"
 
 @interface ViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *myLongRunningOpsInProgressCount;
+@property (weak, nonatomic) IBOutlet UILabel *myLongRunningOpsCompleteCount;
+@property (weak, nonatomic) IBOutlet UISwitch *myDebugModeSwitch;
+@property (weak, nonatomic) IBOutlet UITextView *myTextView;
 
 @end
 
 @implementation ViewController
+
+- (IBAction)doStartLongRunningButton:(id)sender {
+    //TODO
+}
+- (IBAction)doDebugSwitch:(id)sender {
+    //TODO
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

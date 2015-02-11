@@ -68,12 +68,10 @@
     lc.hasAction = YES;
     lc.soundName = UILocalNotificationDefaultSoundName;
     
-//    UIUserNotificationType types = UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound;
-//    NSSet *categories = [NSSet setWithObjects:category, nil];
-//    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:categories];
-//    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-    
-    lc.category = @"mycategory";
+    //Check if category feature available
+    if ([lc respondsToSelector:@selector(category)]) {
+        lc.category = @"mycategory"; //We only go here if feature is available (i.e. iOS 8)
+    }
     
     [[UIApplication sharedApplication] scheduleLocalNotification:lc];
 }

@@ -20,7 +20,17 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:MY_LOCAL_NOTIFICATION_FIRED object:nil];
 }
 
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    NSLog(@"deviceToken: %@", deviceToken);
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@"error: %@", error);
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+    
     if (launchOptions) {
         [[[UIAlertView alloc] initWithTitle:@"Launch!" message:launchOptions.description delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     }

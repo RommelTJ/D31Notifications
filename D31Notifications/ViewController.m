@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 
+#define LONG_RUNNING_OP_COMPLETE @"LongRunningOpComplete"
+
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *myLongRunningOpsInProgressCount;
 @property (weak, nonatomic) IBOutlet UILabel *myLongRunningOpsCompleteCount;
@@ -27,7 +29,28 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+
+    self.myDebugModeSwitch.on = NO;
+    self.myTextView.text = @"";
+    self.myTextView.editable = NO;
+    
+    //Receive notification when app is going into the background.
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self selector:@selector(doEnterBackground:) name:UIApplicationDidEnterBackgroundNotification object:nil];
+    
+    //Register to receive notification when user-defaults change.
+    [nc addObserverForName:NSUserDefaultsDidChangeNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+        //TODO
+    }];
+    
+    //Register to receive a notification when long-running operation completes.
+    [nc addObserverForName:LONG_RUNNING_OP_COMPLETE object:nil queue:nil usingBlock:^(NSNotification *note) {
+        //TODO
+    }];
+}
+
+- (void)doEnterBackground:(NSNotification *)notification {
+    //TODO
 }
 
 - (void)didReceiveMemoryWarning {

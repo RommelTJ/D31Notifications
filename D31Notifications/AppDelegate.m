@@ -14,9 +14,16 @@
 
 @implementation AppDelegate
 
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+    [[[UIAlertView alloc] initWithTitle:@"Look" message:@"didReceiveLocalNotification" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:MY_LOCAL_NOTIFICATION_FIRED object:nil];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    if (launchOptions) {
+        [[[UIAlertView alloc] initWithTitle:@"Launch!" message:launchOptions.description delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    }
     return YES;
 }
 

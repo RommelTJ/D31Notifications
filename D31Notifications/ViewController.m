@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "AppDelegate.h"
 
 #define LONG_RUNNING_OP_COMPLETE @"LongRunningOpComplete"
 #define KEY_DEBUG_SWITCH @"DebugSwitch"
@@ -24,6 +25,26 @@
 @end
 
 @implementation ViewController
+
+- (IBAction)doSendLocalNotification:(id)sender {
+    //Keep a count of notifications
+    static int count;
+    count++;
+    
+    UILocalNotification *lc = [[UILocalNotification alloc] init];
+    lc.fireDate = [NSDate dateWithTimeIntervalSinceNow:30]; //30 seconds from now.
+    
+    NSString *s = [NSString stringWithFormat:@"alertBody: %i", count];
+    lc.alertBody = s;
+    
+    s = [NSString stringWithFormat:@"action: %i", count];
+    lc.alertAction = s;
+    lc.hasAction = YES;
+    lc.soundName = UILocalNotificationDefaultSoundName;
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:lc];
+    
+}
 
 - (IBAction)doStartLongRunningButton:(id)sender {
     self.myLongRunningOps++;
@@ -54,6 +75,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UIUserNotificationType types = UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound;
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
 
     self.ms = [[NSMutableString alloc] init];
     [self.ms appendString:@"Notifications Demo\n"];
@@ -80,6 +105,15 @@
         [self updateDisplay];
         [self.ms appendFormat:@"%@\n", note.name];
         self.myTextView.text = self.ms;
+    }];
+    
+    //Receive notification when a LOCAL notification fires.
+    [nc addObserverForName:MY_LOCAL_NOTIFICATION_FIRED object:nil queue:nil usingBlock:^(NSNotification *note) {
+        //NOTE: Make sure this is on the main thread!
+        //Notify user
+        [self.ms appendFormat:@"%@\n", note.name];
+        self.myTextView.text = self.ms;
+        [self updateDisplay];
     }];
 }
 

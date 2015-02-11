@@ -76,7 +76,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ekq-qQ-q7v">
-                                <rect key="frame" x="424" y="20" width="160" height="30"/>
+                                <rect key="frame" x="235" y="20" width="160" height="30"/>
                                 <state key="normal" title="Send Local Notification">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -84,13 +84,22 @@
                                     <action selector="doSendLocalNotification:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cV7-wU-6Ve"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gx7-GX-Sh3">
+                                <rect key="frame" x="235" y="134" width="298" height="30"/>
+                                <state key="normal" title="Send Local Notification with Action Buttons">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="doSendLocalNotificationWithAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nZe-e0-0It"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ekq-qQ-q7v" firstAttribute="leading" secondItem="ZNW-Sn-um2" secondAttribute="trailing" constant="203" id="9X3-q0-QOF"/>
-                            <constraint firstItem="ekq-qQ-q7v" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="PmP-79-Dgp"/>
-                            <constraint firstItem="ekq-qQ-q7v" firstAttribute="baseline" secondItem="ZNW-Sn-um2" secondAttribute="baseline" id="Vin-Ac-VMl"/>
-                            <constraint firstItem="ekq-qQ-q7v" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="424" id="aSw-Z5-Kg9"/>
+                            <constraint firstItem="ekq-qQ-q7v" firstAttribute="baseline" secondItem="ZNW-Sn-um2" secondAttribute="baseline" id="Iuc-pl-19k"/>
+                            <constraint firstItem="ekq-qQ-q7v" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="235" id="TxV-GB-rI8"/>
+                            <constraint firstItem="ekq-qQ-q7v" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="UWs-CI-xb2"/>
+                            <constraint firstItem="ekq-qQ-q7v" firstAttribute="leading" secondItem="ZNW-Sn-um2" secondAttribute="trailing" constant="14" id="gqI-y7-COB"/>
                         </constraints>
                     </view>
                     <connections>

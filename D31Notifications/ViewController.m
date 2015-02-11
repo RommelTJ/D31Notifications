@@ -26,6 +26,58 @@
 
 @implementation ViewController
 
+- (IBAction)doSendLocalNotificationWithAction:(id)sender {
+    //Step 1. Create some action buttons.
+    UIMutableUserNotificationAction *myAccept = [UIMutableUserNotificationAction new];
+    myAccept.identifier = @"accept";
+    myAccept.title = @"Accept";
+    myAccept.activationMode = UIUserNotificationActivationModeBackground;
+    myAccept.authenticationRequired = NO;
+    myAccept.destructive = NO;
+    
+    UIMutableUserNotificationAction *myDeny = [UIMutableUserNotificationAction new];
+    myDeny.identifier = @"deny";
+    myDeny.title = @"Deny";
+    myDeny.activationMode = UIUserNotificationActivationModeForeground;
+    myDeny.authenticationRequired = NO;
+    myDeny.destructive = YES;
+    
+    //Step 2. Put the actions into a category.
+    UIMutableUserNotificationCategory *category = [UIMutableUserNotificationCategory new];
+    category.identifier = @"mycategory";
+    [category setActions:@[myAccept, myDeny] forContext:UIUserNotificationActionContextDefault];
+    
+    UIUserNotificationType types = UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound;
+    NSSet *categories = [NSSet setWithObjects:category, nil];
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:categories];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    
+    //Step 3. Generate the notifications
+    //Keep a count of notifications
+    static int count;
+    count++;
+    
+    UILocalNotification *lc = [[UILocalNotification alloc] init];
+    lc.fireDate = [NSDate dateWithTimeIntervalSinceNow:30]; //30 seconds from now.
+    
+    NSString *s = [NSString stringWithFormat:@"alertBody: %i", count];
+    lc.alertBody = s;
+    
+    s = [NSString stringWithFormat:@"action: %i", count];
+    lc.alertAction = s;
+    lc.hasAction = YES;
+    lc.soundName = UILocalNotificationDefaultSoundName;
+    
+//    UIUserNotificationType types = UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound;
+//    NSSet *categories = [NSSet setWithObjects:category, nil];
+//    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:categories];
+//    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    
+    lc.category = @"mycategory";
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:lc];
+}
+
 - (IBAction)doSendLocalNotification:(id)sender {
     //Keep a count of notifications
     static int count;

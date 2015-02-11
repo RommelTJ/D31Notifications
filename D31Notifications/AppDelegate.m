@@ -27,6 +27,16 @@
     return YES;
 }
 
+-(void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forLocalNotification:(UILocalNotification *)notification completionHandler:(void (^)())completionHandler {
+    if ([identifier isEqualToString:@"accept"]) {
+        //TODO - Handle Accept
+    } else if ([identifier isEqualToString:@"deny"]) {
+        //TODO - Handle Deny
+    }
+    [[[UIAlertView alloc] initWithTitle:@"One more time" message:identifier delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    completionHandler(); //Call the completion handler.
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.

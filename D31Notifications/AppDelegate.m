@@ -14,10 +14,37 @@
 
 @implementation AppDelegate
 
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+    [[[UIAlertView alloc] initWithTitle:@"Look" message:@"didReceiveLocalNotification" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:MY_LOCAL_NOTIFICATION_FIRED object:nil];
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    NSLog(@"deviceToken: %@", deviceToken);
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@"error: %@", error);
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+    
+    if (launchOptions) {
+        [[[UIAlertView alloc] initWithTitle:@"Launch!" message:launchOptions.description delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    }
     return YES;
+}
+
+-(void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forLocalNotification:(UILocalNotification *)notification completionHandler:(void (^)())completionHandler {
+    if ([identifier isEqualToString:@"accept"]) {
+        //TODO - Handle Accept
+    } else if ([identifier isEqualToString:@"deny"]) {
+        //TODO - Handle Deny
+    }
+    [[[UIAlertView alloc] initWithTitle:@"One more time" message:identifier delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    completionHandler(); //Call the completion handler.
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

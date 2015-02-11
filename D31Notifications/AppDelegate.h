@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define MY_LOCAL_NOTIFICATION_FIRED @"MyLocalNotificationFired"
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
